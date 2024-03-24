@@ -26,8 +26,10 @@ public class WorkingWithStringPayPayOk {
             answer[i] = temp;
             i++;
         }
-
-        //System.out.println(getShiftNumber());
+    }
+    public boolean checkError(){
+        if (answer.length>3)return false;
+        return true;
     }
 
     /**

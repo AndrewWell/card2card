@@ -20,17 +20,18 @@ public class AnswerFragment extends JFrame {
     private JPanel aPanel;
     private JButton button_backSend;
     private JLabel label_nameCompany;
+    private JButton button_repeat;
     private SendFragment sendFragment;
 
     private WorkingWithStringPayPayOk workingWithStringPayPayOk;
     private OnlineTransactionPayPayOk onlineTransactionPayPayOk;
-    private String guid = "e05acc96-796-741b-a007-30e901fda8fa";
+    private DialogForm dialog;
 
-    public AnswerFragment() {
+    public AnswerFragment(String guid) {
         setContentPane(aPanel);
         setTitle("PayPayOK - система взаимодействия");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(550, 850);
+        setSize(480, 850);
         setLocationRelativeTo(null);
         setVisible(true);
         onlineTransactionPayPayOk = new OnlineTransactionPayPayOk("https://pay.pay-ok.org/demo/?REQ");
@@ -61,10 +62,11 @@ public class AnswerFragment extends JFrame {
         textPane_date.setText(workingWithStringPayPayOk.getPaymentDate());
         textPane_CN.setText(workingWithStringPayPayOk.getCheckNumber());
         label_nameCompany.setText(workingWithStringPayPayOk.getNameCompany());
+
     }
 
     public static void main(String[] args) {
-        new AnswerFragment();
+        new AnswerFragment("e05acc96-796-741b-a007-30e901fda8fa");
     }
 
     {
@@ -186,6 +188,9 @@ public class AnswerFragment extends JFrame {
         textPane_CN.setBackground(new Color(-1));
         textPane_CN.setEnabled(false);
         aPanel.add(textPane_CN, new com.intellij.uiDesigner.core.GridConstraints(1, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        button_repeat = new JButton();
+        button_repeat.setText("Повторить запрос чека");
+        aPanel.add(button_repeat, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

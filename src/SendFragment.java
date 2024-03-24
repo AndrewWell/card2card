@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,7 @@ public class SendFragment extends JFrame {
     private JButton button_backAnswer;
     private OnlineTransactionPayPayOk onlineTransactionPayPayOk;
     private AnswerFragment answerFragment;
+    private DialogForm dialog;
 
     public SendFragment() {
         setContentPane(sendFragment);
@@ -25,21 +27,24 @@ public class SendFragment extends JFrame {
         button_send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (dataCheck()) {
-                    onlineTransactionPayPayOk.sendCheck4Registration(
-                            textPane_contacts.getText(),
-                            textPane_id.getText(),
-                            textPane_amount.getText(),
-                            textPane_description.getText()
-                    );
-                }
+                dialog = new DialogForm("Информация о регистрации чека");
+                dialog.setVisibleOK();
+                dialog.setTextPane(//TODO проверить работу dialog.setTextPanel
+                        onlineTransactionPayPayOk.sendCheck4Registration(
+                                textPane_contacts.getText(),
+                                textPane_id.getText(),
+                                textPane_amount.getText().replace(",", "").replace(".", ""),
+                                textPane_description.getText()
+                        ));
             }
         });
         button_backAnswer.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                answerFragment = new AnswerFragment();
+                dialog = new DialogForm("Информация о зарегестрированных чеках");
+                dialog.setVisibleGET();
+                //  answerFragment = new AnswerFragment();
             }
         });
     }
@@ -71,9 +76,11 @@ public class SendFragment extends JFrame {
     private void $$$setupUI$$$() {
         sendFragment = new JPanel();
         sendFragment.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(6, 2, new Insets(0, 0, 0, 0), -1, -1));
-        sendFragment.setBackground(new Color(-13947600));
+        sendFragment.setBackground(new Color(-15275521));
+        sendFragment.setEnabled(false);
         final JLabel label1 = new JLabel();
-        label1.setBackground(new Color(-1));
+        label1.setBackground(new Color(-12583681));
+        label1.setForeground(new Color(-16777216));
         label1.setText("Контактные данные");
         sendFragment.add(label1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
